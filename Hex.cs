@@ -11,6 +11,6 @@ public class Hex : MonoBehaviour
 
     private void Awake()
     {
-        hexCoordinates = GetComponent<hexCoordinates>();
+        hexCoordinates = GetComponent<HexCoordinates>();
     }
 }
