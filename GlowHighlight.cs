@@ -49,7 +49,7 @@ public class GlowHighlight : MonoBehaviour
         {
             foreach(Renderer renderer in originalMaterialDictionary.Keys)
             {
-                renderer.material = originalMaterialDictionary[renderer];
+                renderer.materials = originalMaterialDictionary[renderer];
             }
         }
         isGlowing = !isGlowing;
