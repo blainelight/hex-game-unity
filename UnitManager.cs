@@ -26,7 +26,7 @@ public class UnitManager : MonoBehaviour
         if (CheckIfTheSameUnitSelected(unitReference))
             return;
 
-        PrepareUnitForMovement(unitReference);
+        PrepareUnitForMovement(unitReference); 
     }
 
     private bool CheckIfTheSameUnitSelected(Unit unitReference)
