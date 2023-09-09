@@ -33,7 +33,9 @@ public class SelectionManager : MonoBehaviour
             {
                 hexGrid.GetTileAt(neighbour).DisableHighlight();
             }
-            neighbours = hexGrid.GetNeighboursFor(selectedHex.HexCoords);
+            //neighbours = hexGrid.GetNeighboursFor(selectedHex.HexCoords);
+            BFSResult bfsresult = GraphSearch.BFSGetRange(hexGrid, selectedHex.HexCoords, 20); //set default movepoints to 20
+            neighbours = new List<Vector3Int>(bfsresult.GetRangePositions());
 
             foreach (Vector3Int neighbour in neighbours)
             {
@@ -52,7 +54,7 @@ public class SelectionManager : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-        if (Physics.Raycast(ray,out hit, selectionMask))
+        if (Physics.Raycast(ray, out hit, 100, selectionMask))  // Added max distance of 100
         {
             result = hit.collider.gameObject;
             return true;
