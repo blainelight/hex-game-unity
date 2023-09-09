@@ -42,6 +42,17 @@ public class Hex : MonoBehaviour
     {
         highlight.ToggleGlow(false);
     }
+    
+    internal void ResetHighlight()
+    {
+        highlight.ResetGlowHighlight();
+    }
+
+    internal void HighlightPath()
+    {
+        highlight.HighlightValidPath();
+    }
+
 }
 
 public enum HexType

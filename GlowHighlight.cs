@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,12 @@ public class GlowHighlight : MonoBehaviour
     Dictionary<Color, Material> cachedGlowMaterials = new Dictionary<Color, Material>();
     public Material glowMaterial;
     private bool isGlowing = false;
+    private Color validSpaceColor = Color.green;
+    private Color origionalGlowColor;
 
     private void Awake() {
         PrepareMaterialsDictionaries();
+        origionalGlowColor = glowMaterial.GetColor("_GlowColor");
     }
 
     private void PrepareMaterialsDictionaries()
@@ -34,6 +38,32 @@ public class GlowHighlight : MonoBehaviour
                 newMaterials[i] = mat;
             }
             glowMaterialDictionary.Add(renderer, newMaterials);
+        }
+    }
+
+    internal void HighlightValidPath()
+    {
+        if (isGlowing == false)
+            return;
+        foreach (Renderer renderer in glowMaterialDictionary.Keys)
+        {
+            foreach(Material item in glowMaterialDictionary[renderer])
+            {
+                item.SetColor("_GlowColor", validSpaceColor);
+            }
+        }
+    }
+
+    internal void ResetGlowHighlight()
+    {
+        if (isGlowing == false)
+            return;
+        foreach (Renderer renderer in glowMaterialDictionary.Keys)
+        {
+            foreach(Material item in glowMaterialDictionary[renderer])
+            {
+                item.SetColor("_GlowColor", origionalGlowColor);
+            }
         }
     }
 
