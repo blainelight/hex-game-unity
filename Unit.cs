@@ -37,7 +37,7 @@ public class Unit : MonoBehaviour
     {
         pathPositions = new Queue<Vector3>(currentPath);
         Vector3 firstTarget = pathPositions.Dequeue();
-        StartCoroutine(RotationCoroutine(firstTarget, rotationDuration));
+        StartCoroutine(RotateCoroutine(firstTarget, rotationDuration));
     }
 
     private IEnumerator RotateCoroutine(Vector3 endPosition, float rotationDuration)
@@ -80,7 +80,7 @@ public class Unit : MonoBehaviour
         if (pathPositions.Count > 0)
         {
             Debug.Log("Selecting the next position!");
-            StartCoroutine(RotationCoroutine(pathPositions.Dequeue(), rotationDuration));
+            StartCoroutine(RotateCoroutine(pathPositions.Dequeue(), rotationDuration));
         }
         else
         {
