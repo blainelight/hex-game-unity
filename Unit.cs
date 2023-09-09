@@ -47,7 +47,7 @@ public class Unit : MonoBehaviour
         Vector3 direction = endPosition - transform.position;
         Quaternion endRotation = Quaternion.LookRotation(direction, Vector3.up);
 
-        if(Mathf.Approximatley(Mathf.Abs(Quaternion.Dot(startRotation, endRotation)), 1.0f) == false)
+        if(Mathf.Approximately(Mathf.Abs(Quaternion.Dot(startRotation, endRotation)), 1.0f) == false)
         {
             float timeElapsed = 0;
             while (timeElapsed < rotationDuration)
@@ -62,9 +62,9 @@ public class Unit : MonoBehaviour
         StartCoroutine(MovementCoroutine(endPosition)); //animates player to move from 1 hex to another
     }
 
-    private IEnumerator MovementCoroutine(Vector3 endPosition);
+    private IEnumerator MovementCoroutine(Vector3 endPosition)
     {
-        Vector3 start.position = transform.position;
+        Vector3 startPosition = transform.position;
         endPosition.y = startPosition.y;
         float timeElapsed = 0;
 
@@ -75,7 +75,7 @@ public class Unit : MonoBehaviour
             transform.position = Vector3.Lerp(startPosition, endPosition, lerpStep);
             yield return null; 
         }
-        transform.rotation = endPosition; 
+        transform.position = endPosition; 
 
         if (pathPositions.Count > 0)
         {
